@@ -33,12 +33,28 @@ def process_data(data):
     if item_revenue > max_revenue["revenue"]:
       item["revenue"] = item_revenue
       max_revenue = item
+
     # TODO: also handle max sales
+    if item["total_sales"] > max_sales["total_sales"]:
+      max_sales = item
+
     # TODO: also handle most popular car_year
+    if item["car_year"] not in sales_year:
+        sales_year[item["car_year"]] = item["total_sales"]
+    else:
+        sales_year[item["car_year"]] += item["total_sales"]
+    if sales_year[item["car_year"]] > most_populer["total_sales"]:
+        most_populer["car_year"] = item["car_year"]
+        most_populer["total_sales"] = sales_year[item["car_year"]]
 
       summary = [
         "The {} generated the most revenue: ${}".format(
           format_car(max_revenue["car"]), max_revenue["revenue"]),
+        "The {} had the most sales: ${}".format(
+          format_car(max_sales["car_model"]), max_sales["total_sales"]),
+        "The most popular year was {} with ${}".format(
+          format_car(most_populer["car_year"]), most_populer["total_sales"]),
+          
       ]
 
       return summary
