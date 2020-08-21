@@ -8,9 +8,9 @@ from reportlab.lib import colors
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics.charts.piecharts import Pie
 report_pie = Pie(width=6, height=6)
+import cars
 
-
-def generate(filename, title, additional_info, table_data,dict_data):
+def generate(filename, title, additional_info, table_data, dict_data):
   styles = getSampleStyleSheet()
   report = SimpleDocTemplate(filename)
   report_title = Paragraph(title, styles["h1"])
