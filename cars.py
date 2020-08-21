@@ -70,22 +70,22 @@ def cars_dict_to_table(car_data):
 
 
 def main(argv):
-  """Process the JSON data and generate a full report out of it."""
-  data = load_data("car_sales.json")
-  summary = process_data(data)
-  print(summary)
-  # TODO: turn this into a PDF report
-  contents = summary[0]+"<br/>"+summary[1]+"<br/>"+summary[2]
-  reports.generate("/tmp/cars.pdf", "Sales summary for last month", contents, cars_dict_to_table(data))
+    """Process the JSON data and generate a full report out of it."""
+    data = load_data("car_sales.json")
+    summary = process_data(data)
+    print(summary)
+    # TODO: turn this into a PDF report
+    contents = summary[0]+"<br/>"+summary[1]+"<br/>"+summary[2]
+    reports.generate("/tmp/cars.pdf", "Sales summary for last month", contents, cars_dict_to_table(data))
 
-  # TODO: send the PDF report as an email attachment
- sender = "automation@example.com" #"sender@example.com"
- receiver = "{}@example.com".format(os.environ.get('USER'))
- subject = "Sales summary for last month"
- body = summary[0]+"\n"+summary[1]+"\n"+summary[2]
+    # TODO: send the PDF report as an email attachment
+    sender = "automation@example.com" #"sender@example.com"
+    receiver = "{}@example.com".format(os.environ.get('USER'))
+    subject = "Sales summary for last month"
+    body = summary[0]+"\n"+summary[1]+"\n"+summary[2]
 
- message = emails.generate(sender, receiver, subject, body, "/tmp/cars.pdf")
- emails.send(message)
+    message = emails.generate(sender, receiver, subject, body, "/tmp/cars.pdf")
+    emails.send(message)
 
 
 if __name__ == "__main__":
