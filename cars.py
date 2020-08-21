@@ -30,6 +30,7 @@ def process_data(data):
     # We need to convert the price from "$1234.56" to 1234.56
     item_price = locale.atof(item["price"].strip("$"))
     item_revenue = item["total_sales"] * item_price
+
     if item_revenue > max_revenue["revenue"]:
       item["revenue"] = item_revenue
       max_revenue = item
@@ -51,10 +52,10 @@ def process_data(data):
         "The {} generated the most revenue: ${}".format(
           format_car(max_revenue["car"]), max_revenue["revenue"]),
         "The {} had the most sales: ${}".format(
-          format_car(max_sales["car_model"]), max_sales["total_sales"]),
+          format_car(max_sales["car"]), max_sales["total_sales"]),
         "The most popular year was {} with ${}".format(
-          format_car(most_populer["car_year"]), most_populer["total_sales"]),
-          
+          most_populer["car_year"], most_populer["total_sales"])
+
       ]
 
       return summary
@@ -74,8 +75,17 @@ def process_data(data):
       summary = process_data(data)
       print(summary)
       # TODO: turn this into a PDF report
+      contents = summary[0]+"<br/>"+summary[1]+"<br/>"+summary[2]
+      reports.generate("/tmp/cars.pdf", "Sales summary for last month", contents, cars_dict_to_table(data))
 
       # TODO: send the PDF report as an email attachment
+     sender = "automation@example.com" #"sender@example.com"
+     receiver = "{}@example.com".format(os.environ.get('USER'))
+     subject = "Sales summary for last month"
+     body = summary[0]+"\n"+summary[1]+"\n"+summary[2]
+     
+     message = emails.generate(sender, receiver, subject, body, "/tmp/cars.pdf")
+     emails.send(message)
 
 
     if __name__ == "__main__":
