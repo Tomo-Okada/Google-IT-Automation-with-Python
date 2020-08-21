@@ -69,6 +69,7 @@ def process_data(data):
 def cars_dict_to_table(car_data):
   """Turns the data in car_data into a list of lists."""
   table_data = [["ID", "Car", "Price", "Total Sales"]]
+  car_data.sort(key=lambda k: k["total_sales"], reverse=True)
   for item in car_data:
     table_data.append([item["id"], format_car(item["car"]), item["price"], item["total_sales"]])
   return table_data
