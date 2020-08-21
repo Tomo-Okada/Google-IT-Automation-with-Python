@@ -48,7 +48,7 @@ def process_data(data):
         most_populer["car_year"] = item["car_year"]
         most_populer["total_sales"] = sales_year[item["car_year"]]
 
-      summary = [
+    summary = [
         "The {} generated the most revenue: ${}".format(
           format_car(max_revenue["car"]), max_revenue["revenue"]),
         "The {} had the most sales: ${}".format(
@@ -58,35 +58,35 @@ def process_data(data):
 
       ]
 
-      return summary
+  return summary
 
 
-    def cars_dict_to_table(car_data):
-      """Turns the data in car_data into a list of lists."""
-      table_data = [["ID", "Car", "Price", "Total Sales"]]
-      for item in car_data:
-        table_data.append([item["id"], format_car(item["car"]), item["price"], item["total_sales"]])
-      return table_data
+def cars_dict_to_table(car_data):
+  """Turns the data in car_data into a list of lists."""
+  table_data = [["ID", "Car", "Price", "Total Sales"]]
+  for item in car_data:
+    table_data.append([item["id"], format_car(item["car"]), item["price"], item["total_sales"]])
+  return table_data
 
 
-    def main(argv):
-      """Process the JSON data and generate a full report out of it."""
-      data = load_data("car_sales.json")
-      summary = process_data(data)
-      print(summary)
-      # TODO: turn this into a PDF report
-      contents = summary[0]+"<br/>"+summary[1]+"<br/>"+summary[2]
-      reports.generate("/tmp/cars.pdf", "Sales summary for last month", contents, cars_dict_to_table(data))
+def main(argv):
+  """Process the JSON data and generate a full report out of it."""
+  data = load_data("car_sales.json")
+  summary = process_data(data)
+  print(summary)
+  # TODO: turn this into a PDF report
+  contents = summary[0]+"<br/>"+summary[1]+"<br/>"+summary[2]
+  reports.generate("/tmp/cars.pdf", "Sales summary for last month", contents, cars_dict_to_table(data))
 
-      # TODO: send the PDF report as an email attachment
-     sender = "automation@example.com" #"sender@example.com"
-     receiver = "{}@example.com".format(os.environ.get('USER'))
-     subject = "Sales summary for last month"
-     body = summary[0]+"\n"+summary[1]+"\n"+summary[2]
-     
-     message = emails.generate(sender, receiver, subject, body, "/tmp/cars.pdf")
-     emails.send(message)
+  # TODO: send the PDF report as an email attachment
+ sender = "automation@example.com" #"sender@example.com"
+ receiver = "{}@example.com".format(os.environ.get('USER'))
+ subject = "Sales summary for last month"
+ body = summary[0]+"\n"+summary[1]+"\n"+summary[2]
+
+ message = emails.generate(sender, receiver, subject, body, "/tmp/cars.pdf")
+ emails.send(message)
 
 
-    if __name__ == "__main__":
-      main(sys.argv)
+if __name__ == "__main__":
+  main(sys.argv)
