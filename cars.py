@@ -82,7 +82,7 @@ def main(argv):
     print(summary)
     # TODO: turn this into a PDF report
     contents = summary[0]+"<br/>"+summary[1]+"<br/>"+summary[2]
-    reports.generate("/tmp/cars.pdf", "Sales summary for last month", contents, cars_dict_to_table(data))
+    reports.generate("/tmp/cars.pdf", "Sales summary for last month", contents, cars_dict_to_table(data),data)
 
     # TODO: send the PDF report as an email attachment
     sender = "automation@example.com" #"sender@example.com"

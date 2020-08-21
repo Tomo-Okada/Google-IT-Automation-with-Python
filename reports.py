@@ -7,9 +7,10 @@ from reportlab.lib import colors
 
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics.charts.piecharts import Pie
-report_pie = Pie(width=6*inch, height=6*inch)
+report_pie = Pie(width=6, height=6)
 
-def generate(filename, title, additional_info, table_data):
+
+def generate(filename, title, additional_info, table_data,dict_data):
   styles = getSampleStyleSheet()
   report = SimpleDocTemplate(filename)
   report_title = Paragraph(title, styles["h1"])
@@ -23,9 +24,9 @@ def generate(filename, title, additional_info, table_data):
  #Optional assignement: add pie chart
   report_pie.data = []
   report_pie.labels = []
-  for data in table_data
+  for data in dict_data:
       report_pie.data.append(data["total_sales"])
-      report_pie.labels.append(format_car(data["car"]) 
+      report_pie.labels.append(cars.format_car(data["car"]))
   report_chart = Drawing()
   report_chart.add(report_pie)
 
