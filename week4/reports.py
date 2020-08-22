@@ -28,4 +28,4 @@ def read_contents():
                 fb[keys[keycount]] = value
                 keycount += 1
     contents_list.append(fb)
-return contents_list
+    return contents_list

@@ -7,6 +7,7 @@
 import shutil
 import psutil
 import emails
+import sys
 
 # Report an error if available disk space is lower than 20%
 def check_disk_usage(disk):

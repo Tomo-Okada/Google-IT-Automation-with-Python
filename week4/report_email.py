@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import os, datetime, reports
 import emails
-path = "/supplier-data/descriptions/"
+import sys
 
+path = "/supplier-data/descriptions/"
 
 def main(argv):
     """Process the JSON data and generate a full report out of it."""
