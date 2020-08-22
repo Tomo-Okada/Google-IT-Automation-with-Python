@@ -9,7 +9,7 @@ path = "supplier-data/descriptions/"
 def main(argv):
     """Process the JSON data and generate a full report out of it."""
     # creating the PDF report
-    attachment = "tmp/processed.pdf"
+    attachment = "/tmp/processed.pdf"
     today = date.today()
     title = "Processed Update on <"+ today.strftime("%B %d, %Y")+">"
 
