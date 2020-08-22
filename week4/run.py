@@ -5,9 +5,10 @@ import requests
 
 # Path to the data
 path = "/supplier-data/descriptions/"
+url = "http://[linux-instance-external-IP]/fruits"
+keys = ["name", "weight", "description","image_name"]
 
 # TODO: change below
-keys = ["title", "name", "date", "feedback"]
 
 folder = os.listdir(path)
 for file in folder:
@@ -19,7 +20,7 @@ for file in folder:
             fb[keys[keycount]] = value
             keycount += 1
     print(file,fb)
-    response = requests.post("http://35.223.242.101/feedback/",
+    response = requests.post(url,
     json=fb)
 print("body: ", response.request.body)
 print("status: ",response.status_code)
