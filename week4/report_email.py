@@ -25,7 +25,7 @@ def main(argv):
     receiver = "{}@example.com".format(os.environ.get('USER'))
     subject = "Upload Completed - Online Fruit Store"
     body = "All fruits are uploaded to our website successfully. A detailed list is attached to this email."
-    message = emails.generate(sender, receiver, subject, body, attachment)
+    message = emails.generate_email(sender, receiver, subject, body, attachment)
     emails.send(message)
 
 if __name__ == "__main__":

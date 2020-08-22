@@ -7,7 +7,7 @@ from reportlab.lib import colors
 from datetime import date
 import os
 
-def generate(filename, title, additional_info):
+def generate_report(filename, title, additional_info):
   styles = getSampleStyleSheet()
   report = SimpleDocTemplate(filename)
   report_title = Paragraph(title, styles["h1"])
@@ -19,6 +19,7 @@ def generate(filename, title, additional_info):
 def read_contents():
     path = "supplier-data/descriptions/"
     keys = ["name", "weight", "description"]
+    contents_list = []
     folder = os.listdir(path)
     for file in folder:
         keycount = 0
