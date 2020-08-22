@@ -5,6 +5,7 @@ from reportlab.platypus import Paragraph, Spacer, Table, Image
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
 from datetime import date
+import os
 
 def generate(filename, title, additional_info):
   styles = getSampleStyleSheet()
