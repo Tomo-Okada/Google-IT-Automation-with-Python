@@ -10,8 +10,9 @@ def main(argv):
     """Process the JSON data and generate a full report out of it."""
     # creating the PDF report
     attachment = "/tmp/processed.pdf"
-    today = date.today()
-    title = "Processed Update on <"+ today.strftime("%B %d, %Y")+">"
+    today = date.today().strftime("%B %d, %Y")
+    title = "Processed Update on {}".format(today)
+    print(title)
 
     contents_list = []
     contents_list = reports.read_contents()
