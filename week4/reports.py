@@ -29,11 +29,3 @@ def read_contents():
                 keycount += 1
     contents_list.append(fb)
 return contents_list
-
-contents_list = []
-contents_list = read_contents()
-contents = ""
-for content in contents_list:
-    contents += "<br/>"+content["name"]+"<br/>"+content["weight"]+"<br/>"
-title = "Processed Update on <"+today.strftime("%B %d, %Y")+">"
-generate("/tmp/processed.pdf", title, contents)
