@@ -14,8 +14,7 @@ def main(argv):
     contents_list = reports.read_contents()
     paragraph = ""
     for content in contents_list:
-    paragraph = "<br/>"+content["name"]+"<br/>"+content["weight"]+"<br/>"
-
+        paragraph += "<br/>"+content["name"]+"<br/>"+content["weight"]+"<br/>"
     reports.generate_report(attachment, title, paragraph)
 
     # send the email
