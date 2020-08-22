@@ -17,7 +17,7 @@ def generate(filename, title, additional_info):
   report.build([report_title, empty_line, report_info])
 
 def read_contents():
-    path = "/supplier-data/descriptions/"
+    path = "supplier-data/descriptions/"
     keys = ["name", "weight", "description"]
     folder = os.listdir(path)
     for file in folder:
