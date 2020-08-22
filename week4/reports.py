@@ -24,9 +24,8 @@ def read_contents():
         keycount = 0
         fb = {}
         with open(path + file) as fl:
-            for line in fl:
-                value = line.strip()
-                fb[keys[keycount]] = value
-                keycount += 1
+            fb["name"] = fl.readline().strip()
+            fb["weight"] = fl.readline().strip()
+            fb["description"] = fl.readline().strip()
     contents_list.append(fb)
     return contents_list
