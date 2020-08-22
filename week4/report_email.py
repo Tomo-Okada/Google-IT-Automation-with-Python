@@ -2,6 +2,7 @@
 import os, datetime, reports
 import emails
 import sys
+from datetime import datetime
 
 path = "/supplier-data/descriptions/"
 
@@ -9,7 +10,7 @@ def main(argv):
     """Process the JSON data and generate a full report out of it."""
     # creating the PDF report
     attachment = "/tmp/processed.pdf"
-    title = "Processed Update on <"+today.strftime("%B %d, %Y")+">"
+    title = "Processed Update on <"+ datetime.today.strftime("%B %d, %Y")+">"
 
     contents_list = []
     contents_list = reports.read_contents()
