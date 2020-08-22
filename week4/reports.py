@@ -28,5 +28,5 @@ def read_contents():
             fb["name"] = fl.readline().strip()
             fb["weight"] = fl.readline().strip()
             fb["description"] = fl.readline().strip()
-    contents_list.append(fb)
+            contents_list.append(fb)
     return contents_list
