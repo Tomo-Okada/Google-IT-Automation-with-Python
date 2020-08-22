@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os, datetime, reports
+import emails
 path = "/supplier-data/descriptions/"
 
 
@@ -24,7 +25,6 @@ def main(argv):
     body = "All fruits are uploaded to our website successfully. A detailed list is attached to this email."
     message = emails.generate(sender, receiver, subject, body, attachment)
     emails.send(message)
-
 
 if __name__ == "__main__":
   main(sys.argv)
