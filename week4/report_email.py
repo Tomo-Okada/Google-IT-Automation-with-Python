@@ -26,7 +26,7 @@ def main(argv):
     subject = "Upload Completed - Online Fruit Store"
     body = "All fruits are uploaded to our website successfully. A detailed list is attached to this email."
     message = emails.generate_email(sender, receiver, subject, body, attachment)
-    emails.send(message)
+    emails.send_email(message)
 
 if __name__ == "__main__":
   main(sys.argv)
