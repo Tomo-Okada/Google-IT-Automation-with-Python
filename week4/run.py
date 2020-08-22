@@ -2,6 +2,7 @@
 
 import os
 import requests
+import locale
 
 # Path to the data
 path = "/supplier-data/descriptions/"
@@ -16,11 +17,20 @@ for file in folder:
     fb = {}
     with open(path + file) as fl:
         for line in fl:
-            value = line.strip()
+            if keycount == 1:
+                # drop "lbs" and convert to an integer.
+                value = line.strip()
+                value = int(locale.atof(line.strip("lbs")))
+            else:
+                value = line.strip()
             fb[keys[keycount]] = value
             keycount += 1
+    # add all fields, including the image_name
+    value = os.path.basename(fl) + ".jpeg"
+    fb[keys[keycount+=1]] = value
+
     print(file,fb)
-    response = requests.post(url,
-    json=fb)
+    response = requests.post(url, json=fb)
+
 print("body: ", response.request.body)
 print("status: ",response.status_code)
