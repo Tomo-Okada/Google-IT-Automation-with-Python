@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
+import requests
 
-#Size: Change image resolution from 3000x2000 to 600x400 pixel
-#Format: Change image format from .TIFF to .JPEG
+read_dir = "/supplier-data/images"
+url = "http://localhost/upload/"
 
-# TODO: Use convert("RGB") method for converting RGBA to RGB image.
-
-
-# TODO: After processing the images, save them in the same path ~/supplier-data/images, with a JPEG extension.
+for file_name in glob.glob(os.path.join(read_dir,"*.jpeg")):
+    with open(file_name, 'rb') as opened:
+    r = requests.post(url, files={'file': opened})
