@@ -8,7 +8,7 @@ import json
 
 # Path to the data
 path = "supplier-data/descriptions/"
-url = "http://107.178.210.28/fruits"
+url = "http://35.184.197.2/fruits"
 
 
 folder = os.listdir(path)
