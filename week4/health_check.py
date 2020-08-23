@@ -1,13 +1,11 @@
 #!/usr/bin/env python3
-
-# this Python script should send an email if there are problems, such as:
-#
-# Report an error if available memory is less than 500MB
-
+### this Python script should send an email if there are problems
 import shutil
 import psutil
 import emails
 import sys
+import os
+import socket
 
 # Report an error if available disk space is lower than 20%
 def check_disk_usage(disk):
@@ -28,13 +26,13 @@ def check_memory_usage():
     mu = psutil.virtual_memory()
     available_memory = mu.available
     # usage = psutil.cpu_percent(1)
-    return available_memory < 500*1000000
+    return available_memory > 500*1000000
 
 # Report an error if the hostname "localhost" cannot be resolved to "127.0.0.1"
 def check_localhost():
     """Verifies whether the local host is correctly configured"""
     localhost = socket.gethostbyname('localhost')
-    return localhost = "127.0.0.1."
+    return localhost == "127.0.0.1"
 
 def main(argv):
     """Background monitoring system statistics: CPU usage, disk space, available memory and name resolution.
@@ -48,22 +46,22 @@ def main(argv):
         subject = "Error - Available disk space is less than 20%"
         print(subject)
         message = emails.generate_error_report(sender, receiver, subject, body)
-        emails.send(message)
+        emails.send_email(message)
     elif not check_cpu_usage():
         subject = "Error - CPU usage is over 80%"
         print(subject)
         message = emails.generate_error_report(sender, receiver, subject, body)
-        emails.send(message)
+        emails.send_email(message)
     elif not check_memory_usage():
         subject = "Error - Available memory is less than 500MB"
         print(subject)
         message = emails.generate_error_report(sender, receiver, subject, body)
-        emails.send(message)
+        emails.send_email(message)
     elif not check_localhost():
         subject = "Error - localhost cannot be resolved to 127.0.0.1"
         print(subject)
         message = emails.generate_error_report(sender, receiver, subject, body)
-        emails.send(message)
+        emails.send_email(message)
 
 if __name__ == "__main__":
   main(sys.argv)
