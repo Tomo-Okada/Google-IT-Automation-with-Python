@@ -5,7 +5,7 @@ import glob, os
 read_dir = "supplier-data/images"
 save_dir = "supplier-data/images"
 
-for file_name in glob.glob(os.path.join(read_dir,"*")):
+for file_name in glob.glob(os.path.join(read_dir,"*.tiff")):
     im = Image.open(file_name)
     #Size: Change image resolution from 3000x2000 to 600x400 pixel
     #Format: Change image format from .TIFF to .JPEG
