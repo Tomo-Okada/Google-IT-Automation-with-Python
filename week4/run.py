@@ -8,38 +8,25 @@ import json
 
 # Path to the data
 path = "supplier-data/descriptions/"
-url = "http://35.184.197.2/fruits"
+url = "http://localhost/fruits/"
 
 
 folder = os.listdir(path)
 for file in folder:
-    keycount = 0
-    # FIXME: dictionary does not retain order. It cause the error to upload JSON.
-    fb = OrderedDict()
-    name = file.split(".txt")[0]+".jpeg"
-
-    with open(path + file) as fl:
+    fb = {} #OrderedDict()
+    with open(path + file,"r") as fl:
+        fb.clear()
         keys = ["name", "weight", "description","image_name"]
-        fb["name"] = fl.readline().strip()
-        fb["weight"] = int(fl.readline().strip(" lbs\n"))
-        fb["description"] = fl.readline().strip()
-        # add all fields, including the image_name
-        fb["image_name"] = name
+        fb["name"] = fl.readline().strip("\n")
+        fb["weight"] = int(fl.readline().strip("\n").strip("lbs"))
+        fb["description"] = fl.readline().strip("\n")
+        fb["image_name"] = file.split(".txt")[0]+".jpeg"
 
-        # for line in fl:
-        #     if keycount == 1:
-        #         # drop "lbs" and convert to an integer.
-        #         value = line.strip()
-        #         value = line.strip(" lbs\n")
-        #         value = int(value)
-        #     else:
-        #         value = line.strip()
-        #
-        #     fb[keys[keycount]] = value
-        #     keycount += 1
-    js = json.dumps(fb, indent=2, sort_keys=True)
-    print(file,js)
-    response = requests.post(url, json=js)
+    # js = json.dumps(fb, indent=2)
+    # NOTE: JSON dump makes post unworkable. Instead, dictionaries format works well in below.
+    response = requests.post(url, json=fb)
+    print(file,fb)
 
+print(response.raise_for_status())
 print("body: ", response.request.body)
 print("status: ",response.status_code)
