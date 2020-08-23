@@ -4,6 +4,7 @@ import os
 import requests
 import locale
 from collections import OrderedDict
+import json
 
 # Path to the data
 path = "supplier-data/descriptions/"
