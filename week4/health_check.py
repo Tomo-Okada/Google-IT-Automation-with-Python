@@ -22,7 +22,7 @@ def check_cpu_usage():
     usage = psutil.cpu_percent(1)
     return usage < 80
 
-#TODO Report an error if available memory is less than 500MB
+# Report an error if available memory is less than 500MB
 def check_memory_usage():
     """Verifies that there's enough unused memory"""
     mu = psutil.virtual_memory()

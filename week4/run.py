@@ -8,7 +8,7 @@ from collections import OrderedDict
 # Path to the data
 path = "supplier-data/descriptions/"
 url = "http://107.178.210.28/fruits"
-keys = ["name", "weight", "description","image_name"]
+
 
 folder = os.listdir(path)
 for file in folder:
@@ -18,6 +18,7 @@ for file in folder:
     name = file.split(".txt")[0]+".jpeg"
 
     with open(path + file) as fl:
+        keys = ["name", "weight", "description","image_name"]
         fb["name"] = fl.readline().strip()
         fb["weight"] = int(fl.readline().strip(" lbs\n"))
         fb["description"] = fl.readline().strip()
@@ -35,7 +36,7 @@ for file in folder:
         #
         #     fb[keys[keycount]] = value
         #     keycount += 1
-    js = json.dumps(fb)
+    js = json.dumps(fb, indent=2, sort_keys=True)
     print(file,js)
     response = requests.post(url, json=js)
 
